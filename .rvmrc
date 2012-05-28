@@ -1,0 +1,2 @@
+# setup gemset
+rvm use ruby-1.9.3@mass_assignment_with_multiple_roles

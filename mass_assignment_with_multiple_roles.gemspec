@@ -14,4 +14,7 @@ Gem::Specification.new do |gem|
   gem.name          = "mass_assignment_with_multiple_roles"
   gem.require_paths = ["lib"]
   gem.version       = MassAssignmentWithMultipleRoles::VERSION
+
+  gem.add_development_dependency 'activesupport', '~> 3.2.3'
+  gem.add_dependency 'activemodel', '~> 3.2.3'
 end

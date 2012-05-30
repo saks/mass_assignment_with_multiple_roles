@@ -15,10 +15,39 @@ class MassAssignmentSecurityWithMultipleRolesTest < ActiveModel::TestCase
     assert_equal expected, sanitized
   end
 
-  def test_with_an_array_of_roles
+  def test_it_falls_to_default_if_no_valid_role_was_passed
+    student = Student.new
+    expected = { 'phone_number' => 'buz' }
+
+    sanitized = student.sanitize_for_mass_assignment(expected.merge('email' => 'bar'), [])
+    assert_equal expected, sanitized
+
+    sanitized = student.sanitize_for_mass_assignment(expected.merge('email' => 'bar'), nil)
+    assert_equal expected, sanitized
+
+    sanitized = student.sanitize_for_mass_assignment(expected.merge('email' => 'bar'))
+    assert_equal expected, sanitized
+
+    sanitized = student.sanitize_for_mass_assignment(expected.merge('email' => 'bar'), [Object.new])
+    assert_equal expected, sanitized
+  end
+
+  def test_with_an_array_of_roles_for_attr_accesible
     student = Student.new
     expected = { 'name' => 'buz', 'email' => 'foo' }
     sanitized = student.sanitize_for_mass_assignment(expected, [:user, :admin])
+    assert_equal expected, sanitized
+  end
+
+  def test_with_an_array_of_roles_for_attr_protected
+    student = Teacher.new
+    expected = { 'phone_number' => 'bar' }
+
+    sanitized = student.sanitize_for_mass_assignment(
+      expected.merge('name' => 'buz', 'email' => 'foo'),
+      [:user, :admin]
+    )
+
     assert_equal expected, sanitized
   end
 
@@ -42,16 +71,16 @@ class MassAssignmentSecurityWithMultipleRolesTest < ActiveModel::TestCase
     student.sanitize_for_mass_assignment(expected, [:user, :admin])
   end
 
-  def test_fall_to_defaut_if_not_existent_role_was_passed
+  def test_do_not_take_into_account_not_known_roles
     student = Student.new
-    expected = { 'phone_number' => 'buz' }
+    expected = { 'name' => 'foo', 'email' => 'bar' }
 
-    Student.expects(:attr_accessible).never
-
-    student.sanitize_for_mass_assignment(
-      expected.update('name' => 'foo', 'email' => 'bar'),
+    sanitized = student.sanitize_for_mass_assignment(
+      expected.merge('phone_number' => 'buz'),
       [:user, :admin, :not_existent]
     )
+
+    assert_equal expected, sanitized
   end
 
   def test_do_not_fail_and_use_DEFAULT_if_wrong_data_type_was_passed_as_role

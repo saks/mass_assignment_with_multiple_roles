@@ -85,18 +85,12 @@ class Student
   public :sanitize_for_mass_assignment
 end
 
+class Teacher
+  include ActiveModel::MassAssignmentSecurity
 
+  attr_protected :phone_number
+  attr_protected :name, as: :admin
+  attr_protected :email, as: :user
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  public :sanitize_for_mass_assignment
+end

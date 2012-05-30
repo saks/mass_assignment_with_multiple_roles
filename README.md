@@ -16,10 +16,6 @@ Or install it yourself as:
 
     $ gem install mass_assignment_with_multiple_roles
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Contributing
 
 1. Fork it

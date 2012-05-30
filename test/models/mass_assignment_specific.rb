@@ -75,9 +75,10 @@ class TightDescendant < TightPerson
   attr_accessible :super_powers, :as => :admin
 end
 
-class Cat
+class Student
   include ActiveModel::MassAssignmentSecurity
 
+  attr_accessible :phone_number
   attr_accessible :name, as: :admin
   attr_accessible :email, as: :user
 

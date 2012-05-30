@@ -15,7 +15,7 @@ module ActiveModel
       end
 
       if roles_array
-        roles_array.map!(&:to_sym)
+        roles_array = roles_array.compact.map(&:to_sym)
         mixed_role_name = roles_array.sort.join('_').to_sym
       end
 

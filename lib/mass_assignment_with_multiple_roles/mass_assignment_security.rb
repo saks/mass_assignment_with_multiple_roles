@@ -42,7 +42,7 @@ module ActiveModel
         result += self.class._accessible_attributes[role_name].to_a
       end
 
-      self.class.attr_accessible(*fields, as: new_role_name)
+      self.class.attr_accessible(*fields, :as => new_role_name)
     end
   end
 end

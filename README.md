@@ -1,4 +1,4 @@
-# MassAssignmentWithMultipleRoles
+# MassAssignmentWithMultipleRoles https://secure.travis-ci.org/saks/mass_assignment_with_multiple_roles.png
 
 TODO: Write a gem description
 

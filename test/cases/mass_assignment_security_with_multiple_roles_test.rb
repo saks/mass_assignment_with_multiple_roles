@@ -53,7 +53,7 @@ class MassAssignmentSecurityWithMultipleRolesTest < ActiveModel::TestCase
 
   def test_with_object_that_respond_to_roles_method
     student = Student.new
-    user    = OpenStruct.new roles: [:user, :admin]
+    user    = OpenStruct.new MassAssignmentWithMultipleRoles::ROLE_NAMES_METHOD => [:user, :admin]
 
     expected = { 'name' => 'buz', 'email' => 'foo' }
     sanitized = student.sanitize_for_mass_assignment(expected, user)

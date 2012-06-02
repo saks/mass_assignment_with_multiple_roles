@@ -4,9 +4,9 @@ require File.expand_path('../lib/mass_assignment_with_multiple_roles/version', _
 Gem::Specification.new do |gem|
   gem.authors       = ["saksmlz"]
   gem.email         = ["saksmlz@gmail.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
-  gem.homepage      = ""
+  gem.description   = %q{This gem allows you to pass multiple roles into methods like save and update_attributes}
+  gem.summary       = %q{Allows to use intersection of attr_accessible if passing multiple role names on save}
+  gem.homepage      = "http://github.com/saks/mass_assignment_with_multiple_roles"
 
   gem.files         = `git ls-files`.split($\)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

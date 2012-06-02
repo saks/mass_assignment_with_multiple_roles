@@ -94,3 +94,9 @@ class Teacher
 
   public :sanitize_for_mass_assignment
 end
+
+class Blank
+  include ActiveModel::MassAssignmentSecurity
+
+  public :sanitize_for_mass_assignment
+end

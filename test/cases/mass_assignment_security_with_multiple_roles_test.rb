@@ -90,4 +90,10 @@ class MassAssignmentSecurityWithMultipleRolesTest < ActiveModel::TestCase
     assert_equal expected, sanitized
   end
 
+  def test_it_not_fails_if_active_authorizer_is_empty
+    blank = Blank.new
+    expected = { 'name' => 'buz', 'email' => 'foo' }
+    sanitized = blank.sanitize_for_mass_assignment(expected, [:user, :admin])
+    assert_equal expected, sanitized
+  end
 end
